@@ -24,7 +24,7 @@ function Form(props) {
                 <center><button type="submit" className="btn btn-primary" >{props.editing ? 'update' : 'submit'} </button></center> 
                 </form>
             </div>
-        </div >
+        </div>
     )
 }
 
