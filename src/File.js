@@ -23,9 +23,9 @@ function File() {
     const deleteSuccess = () => toast.success('Data Delete Successfully !', {
         position: toast.POSITION.BOTTOM_RIGHT
     });
-    // const addFail = () => toast.error('Please enter a Title', {
-    //     position: toast.POSITION.BOTTOM_RIGHT
-    // });
+    const userExist = () => toast.error('User Already Exists', {
+        position: toast.POSITION.BOTTOM_RIGHT
+    });
     useEffect(() => {
         localStorage.setItem('allData', JSON.stringify(allData));
     }, [allData])
@@ -41,8 +41,9 @@ function File() {
         console.log(user);
 
     }
-    const handleSubmit = () => {
-        // event.preventDefault();
+    const handleSubmit = (event) => {
+        let emailExists = allData.some((u) => u.email === user.email);
+        event.preventDefault();
         // setAllData((old) => {return [...old, user]; })
         if (editing) {
             const tempdata = allData;
@@ -50,7 +51,18 @@ function File() {
             setAllData([...tempdata]);
             setEditing(false);
             editSuccess();
-        } else {
+        }
+
+        else if (emailExists) {
+            userExist();
+            setUser({
+                fName: '',
+                lName: '',
+                email: '',
+            })
+            return;
+        }
+        else {
             setAllData([...allData, user]);
             console.log(allData);
             setUser({
