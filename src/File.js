@@ -23,7 +23,7 @@ function File() {
     const deleteSuccess = () => toast.success('Data Delete Successfully !', {
         position: toast.POSITION.BOTTOM_RIGHT
     });
-    const userExist = () => toast.error('User Already Exists', {
+    const userExist = () => toast.error('Email Already Exists', {
         position: toast.POSITION.BOTTOM_RIGHT
     });
     useEffect(() => {
